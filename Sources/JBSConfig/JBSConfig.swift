@@ -24,9 +24,6 @@ import TSCUtility
 /// automatically.
 @main
 struct JBSConfig: AsyncParsableCommand {
-  /// Total amount of steps of the configuration performed by this script.
-  private static let stepCount = 3
-
   /// Named unit of work part of the configuration of this script. Represents
   /// an action which performs one or more related operations, and is associated
   /// to a function of an instance of a ``JBSConfig``.
