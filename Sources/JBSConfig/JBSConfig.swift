@@ -82,19 +82,19 @@ struct JBSConfig: AsyncParsableCommand {
   /// As you're about to notice, I'm a pretty boring person when it comes to
   /// background images. This function sets the solid black color provided by
   /// macOS as the wallpaper of all desktops.
-  ///
-  /// - Throws: If the AppleScript by which the wallpapers are changed is not
-  ///   found in the main bundle of the executable.
   static func changeWallpapers() async throws {
-    guard
-      let changerScriptURL = Bundle.main.url(
-        forResource: "WallpaperChanger",
-        withExtension: "applescript"
-      )
-    else { throw CocoaError(.fileNoSuchFile) }
     let _ = try await Subprocess.run(
       .name("osascript"),
-      arguments: [changerScriptURL.path()],
+      arguments: [
+        "-e",
+        """
+        tell application "System Events"
+          tell every desktop
+            set picture to "/System/Library/Desktop Pictures/Solid/Black.png"
+          end tell
+        end tell
+        """
+      ],
       output: .discarded
     )
   }

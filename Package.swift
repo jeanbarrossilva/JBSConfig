@@ -27,8 +27,7 @@ let package = Package(
         .product(name: "ArgumentParser", package: "swift-argument-parser"),
         .product(name: "Subprocess", package: "swift-subprocess"),
         .product(name: "TSCBasic", package: "swift-tools-support-core")
-      ],
-      resources: [.process("WallpaperChanger.applescript")]
+      ]
     )
   ]
 )
